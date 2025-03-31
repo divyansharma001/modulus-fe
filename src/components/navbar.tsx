@@ -43,7 +43,7 @@ export function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-8">
             <a
-              href="#questions"
+              href="pages/questions"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Questions
@@ -93,7 +93,7 @@ export function Navbar() {
         <div className="md:hidden bg-background dark:bg-card p-4 shadow-lg animate-fade-in">
           <nav className="flex flex-col space-y-4">
             <a
-              href="#questions"
+              href="/pages/questions"
               className="text-muted-foreground hover:text-foreground transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
