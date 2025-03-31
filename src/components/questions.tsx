@@ -5,33 +5,31 @@ import { cn } from "@/lib/utils";
 import { Navbar } from './navbar';
 import { Footer } from './footer';
 
-// Sample data for HR interview questions
-const loadAllHRQuestions = () => {
-  return [
-    { id: 1, title: "Tell me about yourself.", company: "Amazon, Google, Microsoft", difficulty: "Easy", tags: ["Behavioral", "Common"], answers: 42, timeAgo: "1 month ago", hasBeenAsked: true },
-    { id: 2, title: "What are your greatest strengths?", company: "Apple, Meta, LinkedIn", difficulty: "Easy", tags: ["Behavioral", "Self-Assessment"], answers: 38, timeAgo: "2 months ago", hasBeenAsked: true },
-    { id: 3, title: "What are your greatest weaknesses?", company: "Netflix, Salesforce, Oracle", difficulty: "Medium", tags: ["Behavioral", "Self-Assessment"], answers: 45, timeAgo: "1 month ago", hasBeenAsked: true },
-    { id: 4, title: "Tell me about something you did – or failed to do – that you now feel a little ashamed of.", company: "Goldman Sachs, JPMorgan, Morgan Stanley", difficulty: "Hard", tags: ["Behavioral", "Ethics"], answers: 26, timeAgo: "3 months ago", hasBeenAsked: false },
-    { id: 5, title: "Why are you leaving (or did you leave) this position?", company: "Deloitte, KPMG, EY", difficulty: "Medium", tags: ["Behavioral", "Career Transition"], answers: 31, timeAgo: "2 weeks ago", hasBeenAsked: true },
-    { id: 6, title: "The Silent Treatment", company: "McKinsey, BCG, Bain", difficulty: "Hard", tags: ["Behavioral", "Pressure Testing"], answers: 18, timeAgo: "2 months ago", hasBeenAsked: false },
-    { id: 7, title: "Why should I hire you?", company: "Accenture, IBM, Cognizant", difficulty: "Medium", tags: ["Behavioral", "Value Proposition"], answers: 29, timeAgo: "1 month ago", hasBeenAsked: true },
-    { id: 8, title: "Aren't you overqualified for this position?", company: "L'Oréal, P&G, Unilever", difficulty: "Medium", tags: ["Behavioral", "Career Fit"], answers: 24, timeAgo: "2 months ago", hasBeenAsked: false },
-    { id: 9, title: "Where do you see yourself five years from now?", company: "Coca-Cola, PepsiCo, Nestlé", difficulty: "Medium", tags: ["Behavioral", "Career Goals"], answers: 37, timeAgo: "1 month ago", hasBeenAsked: true },
-    { id: 10, title: "Describe your ideal company, location and job.", company: "American Express, Visa, Mastercard", difficulty: "Medium", tags: ["Behavioral", "Preferences"], answers: 22, timeAgo: "3 months ago", hasBeenAsked: false },
-    // Adding more questions to demonstrate pagination
-    { id: 11, title: "Why do you want to work at our company?", company: "Tesla, SpaceX, Rivian", difficulty: "Easy", tags: ["Behavioral", "Company Interest"], answers: 33, timeAgo: "2 weeks ago", hasBeenAsked: true },
-    { id: 12, title: "Describe a time you faced a conflict at work.", company: "Adobe, Autodesk, Oracle", difficulty: "Medium", tags: ["Behavioral", "Conflict Resolution"], answers: 27, timeAgo: "1 month ago", hasBeenAsked: true },
-    { id: 13, title: "How do you handle stress and pressure?", company: "UBS, Deutsche Bank, Credit Suisse", difficulty: "Medium", tags: ["Behavioral", "Stress Management"], answers: 31, timeAgo: "3 weeks ago", hasBeenAsked: false },
-    { id: 14, title: "What motivates you?", company: "Uber, Lyft, DoorDash", difficulty: "Easy", tags: ["Behavioral", "Motivation"], answers: 35, timeAgo: "2 months ago", hasBeenAsked: true },
-    { id: 15, title: "Tell me about a time you had to deal with a difficult customer.", company: "Airbnb, Booking.com, Expedia", difficulty: "Medium", tags: ["Behavioral", "Customer Service"], answers: 40, timeAgo: "1 month ago", hasBeenAsked: true },
-    { id: 16, title: "What is your leadership style?", company: "Nike, Adidas, Under Armour", difficulty: "Medium", tags: ["Behavioral", "Leadership"], answers: 36, timeAgo: "2 months ago", hasBeenAsked: false },
-    { id: 17, title: "How do you prioritize your work?", company: "Intel, AMD, Nvidia", difficulty: "Easy", tags: ["Behavioral", "Time Management"], answers: 29, timeAgo: "3 weeks ago", hasBeenAsked: true },
-    { id: 18, title: "Why do you want to leave your current job?", company: "Johnson & Johnson, Pfizer, Merck", difficulty: "Medium", tags: ["Behavioral", "Career Transition"], answers: 33, timeAgo: "1 month ago", hasBeenAsked: true },
-    { id: 19, title: "Tell me about a project you're proud of.", company: "Disney, Netflix, HBO", difficulty: "Easy", tags: ["Behavioral", "Achievements"], answers: 41, timeAgo: "2 weeks ago", hasBeenAsked: true },
-    { id: 20, title: "How would your coworkers describe you?", company: "Spotify, Pandora, SoundCloud", difficulty: "Easy", tags: ["Behavioral", "Self-Assessment"], answers: 28, timeAgo: "1 month ago", hasBeenAsked: false },
-    { id: 60, title: "If you won $10 million lottery, would you still work?", company: "Slack, Zoom, Microsoft", difficulty: "Easy", tags: ["Behavioral", "Motivation"], answers: 28, timeAgo: "2 weeks ago", hasBeenAsked: false }
-  ];
-};
+// Sample data for HR interview questions - moved outside component to prevent recreation on each render
+const allHRQuestions = [
+  { id: 1, title: "Tell me about yourself.", company: "Amazon, Google, Microsoft", difficulty: "Easy", tags: ["Behavioral", "Common"], answers: 42, timeAgo: "1 month ago", hasBeenAsked: true },
+  { id: 2, title: "What are your greatest strengths?", company: "Apple, Meta, LinkedIn", difficulty: "Easy", tags: ["Behavioral", "Self-Assessment"], answers: 38, timeAgo: "2 months ago", hasBeenAsked: true },
+  { id: 3, title: "What are your greatest weaknesses?", company: "Netflix, Salesforce, Oracle", difficulty: "Medium", tags: ["Behavioral", "Self-Assessment"], answers: 45, timeAgo: "1 month ago", hasBeenAsked: true },
+  { id: 4, title: "Tell me about something you did – or failed to do – that you now feel a little ashamed of.", company: "Goldman Sachs, JPMorgan, Morgan Stanley", difficulty: "Hard", tags: ["Behavioral", "Ethics"], answers: 26, timeAgo: "3 months ago", hasBeenAsked: false },
+  { id: 5, title: "Why are you leaving (or did you leave) this position?", company: "Deloitte, KPMG, EY", difficulty: "Medium", tags: ["Behavioral", "Career Transition"], answers: 31, timeAgo: "2 weeks ago", hasBeenAsked: true },
+  { id: 6, title: "The Silent Treatment", company: "McKinsey, BCG, Bain", difficulty: "Hard", tags: ["Behavioral", "Pressure Testing"], answers: 18, timeAgo: "2 months ago", hasBeenAsked: false },
+  { id: 7, title: "Why should I hire you?", company: "Accenture, IBM, Cognizant", difficulty: "Medium", tags: ["Behavioral", "Value Proposition"], answers: 29, timeAgo: "1 month ago", hasBeenAsked: true },
+  { id: 8, title: "Aren't you overqualified for this position?", company: "L'Oréal, P&G, Unilever", difficulty: "Medium", tags: ["Behavioral", "Career Fit"], answers: 24, timeAgo: "2 months ago", hasBeenAsked: false },
+  { id: 9, title: "Where do you see yourself five years from now?", company: "Coca-Cola, PepsiCo, Nestlé", difficulty: "Medium", tags: ["Behavioral", "Career Goals"], answers: 37, timeAgo: "1 month ago", hasBeenAsked: true },
+  { id: 10, title: "Describe your ideal company, location and job.", company: "American Express, Visa, Mastercard", difficulty: "Medium", tags: ["Behavioral", "Preferences"], answers: 22, timeAgo: "3 months ago", hasBeenAsked: false },
+  // Adding more questions to demonstrate pagination
+  { id: 11, title: "Why do you want to work at our company?", company: "Tesla, SpaceX, Rivian", difficulty: "Easy", tags: ["Behavioral", "Company Interest"], answers: 33, timeAgo: "2 weeks ago", hasBeenAsked: true },
+  { id: 12, title: "Describe a time you faced a conflict at work.", company: "Adobe, Autodesk, Oracle", difficulty: "Medium", tags: ["Behavioral", "Conflict Resolution"], answers: 27, timeAgo: "1 month ago", hasBeenAsked: true },
+  { id: 13, title: "How do you handle stress and pressure?", company: "UBS, Deutsche Bank, Credit Suisse", difficulty: "Medium", tags: ["Behavioral", "Stress Management"], answers: 31, timeAgo: "3 weeks ago", hasBeenAsked: false },
+  { id: 14, title: "What motivates you?", company: "Uber, Lyft, DoorDash", difficulty: "Easy", tags: ["Behavioral", "Motivation"], answers: 35, timeAgo: "2 months ago", hasBeenAsked: true },
+  { id: 15, title: "Tell me about a time you had to deal with a difficult customer.", company: "Airbnb, Booking.com, Expedia", difficulty: "Medium", tags: ["Behavioral", "Customer Service"], answers: 40, timeAgo: "1 month ago", hasBeenAsked: true },
+  { id: 16, title: "What is your leadership style?", company: "Nike, Adidas, Under Armour", difficulty: "Medium", tags: ["Behavioral", "Leadership"], answers: 36, timeAgo: "2 months ago", hasBeenAsked: false },
+  { id: 17, title: "How do you prioritize your work?", company: "Intel, AMD, Nvidia", difficulty: "Easy", tags: ["Behavioral", "Time Management"], answers: 29, timeAgo: "3 weeks ago", hasBeenAsked: true },
+  { id: 18, title: "Why do you want to leave your current job?", company: "Johnson & Johnson, Pfizer, Merck", difficulty: "Medium", tags: ["Behavioral", "Career Transition"], answers: 33, timeAgo: "1 month ago", hasBeenAsked: true },
+  { id: 19, title: "Tell me about a project you're proud of.", company: "Disney, Netflix, HBO", difficulty: "Easy", tags: ["Behavioral", "Achievements"], answers: 41, timeAgo: "2 weeks ago", hasBeenAsked: true },
+  { id: 20, title: "How would your coworkers describe you?", company: "Spotify, Pandora, SoundCloud", difficulty: "Easy", tags: ["Behavioral", "Self-Assessment"], answers: 28, timeAgo: "1 month ago", hasBeenAsked: false },
+  { id: 60, title: "If you won $10 million lottery, would you still work?", company: "Slack, Zoom, Microsoft", difficulty: "Easy", tags: ["Behavioral", "Motivation"], answers: 28, timeAgo: "2 weeks ago", hasBeenAsked: false }
+];
 
 const difficultyColors = {
   Easy: "bg-green-100 text-green-800",
@@ -39,10 +37,21 @@ const difficultyColors = {
   Hard: "bg-red-100 text-red-800"
 };
 
+// Map of question IDs to their example answers - prevents repetitive code in the render function
+const questionAnswers = {
+  1: "When answering \"Tell me about yourself,\" focus on your professional journey that's relevant to the role. Start with your current position, highlight 2-3 key achievements, then briefly cover your background and qualifications. End with why you're interested in this role. Keep it under 2 minutes and practice to sound natural, not rehearsed.",
+  2: "When discussing strengths, select 3-4 qualities that are relevant to the job. For each strength, provide a brief example that demonstrates how you've used it successfully. Make sure your strengths align with what the employer is seeking. Be confident but not arrogant, and be prepared to discuss how you continue to develop these strengths.",
+  3: "The best approach to discussing weaknesses is to mention skills you've improved upon or are working to strengthen. Choose a genuine but not critical weakness, describe how you've recognized it, and explain the specific steps you're taking to overcome it. End with progress you've made. Avoid clichés like \"I'm a perfectionist\" and never mention weaknesses central to the job requirements.",
+  4: "For this challenging question, select a situation where you made a professional mistake that you learned from. Briefly describe what happened, take full responsibility without making excuses, and most importantly, focus on what you learned and how you've applied that lesson since. Choose something with a clear resolution and growth opportunity, and avoid sharing something that would raise serious concerns about your judgment.",
+  5: "When explaining why you're leaving your position, focus on the positive aspects of what you're moving toward rather than what you're leaving behind. Emphasize your desire for growth, new challenges, or better alignment with your career goals. Be honest but diplomatic - never speak negatively about your current employer. Demonstrate that you're making a thoughtful career move rather than an impulsive decision.",
+  6: "The \"Silent Treatment\" is a stress interview technique where the interviewer remains silent after you answer. Don't fill the silence with nervous chatter. Instead, maintain composure, briefly ask if they would like more detail on your answer, and then wait calmly. This tests your confidence and ability to handle pressure. Remember that it's a deliberate technique, not a sign you've answered poorly.",
+  7: "When answering \"Why should I hire you?\", focus on 3-4 specific qualifications and accomplishments that match what the employer needs. Research the company thoroughly beforehand to understand their challenges. Demonstrate your understanding of their needs, explain how your experience solves their problems, highlight your unique value proposition, and convey genuine enthusiasm for the role and company."
+};
+
+// Default answer for questions without a specific answer
+const defaultAnswer = "This question tests your alignment with the role and organization. Prepare a thoughtful answer that demonstrates your understanding of the position's requirements and how your experience makes you well-suited to meet them. Focus on specific examples that highlight your relevant skills and accomplishments.";
+
 export default function HRInterviewQuestionsComponent() {
-  // Load all questions
-  const allQuestions = loadAllHRQuestions();
-  
   // State for filters, expanded question, and pagination
   const [selectedFilters, setSelectedFilters] = useState({
     role: null,
@@ -53,7 +62,7 @@ export default function HRInterviewQuestionsComponent() {
   const [expandedQuestion, setExpandedQuestion] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredQuestions, setFilteredQuestions] = useState(allQuestions);
+  const [filteredQuestions, setFilteredQuestions] = useState(allHRQuestions);
   
   // Pagination settings
   const questionsPerPage = 5;
@@ -70,7 +79,7 @@ export default function HRInterviewQuestionsComponent() {
   
   // Apply filters and search
   useEffect(() => {
-    let results = allQuestions;
+    let results = allHRQuestions;
     
     // Apply search filter
     if (searchQuery.trim() !== '') {
@@ -94,8 +103,11 @@ export default function HRInterviewQuestionsComponent() {
     }
     
     setFilteredQuestions(results);
-    setCurrentPage(1); // Reset to first page when filters change
-  }, [searchQuery, selectedFilters, allQuestions]);
+    // Only reset to first page when filters change if we're not on the first page already
+    if (currentPage !== 1) {
+      setCurrentPage(1);
+    }
+  }, [searchQuery, selectedFilters]);
   
   // Calculate total pages based on filtered questions
   const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
@@ -163,6 +175,13 @@ export default function HRInterviewQuestionsComponent() {
     }));
   };
 
+  // Check if current page is valid (in case filters reduce total pages)
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages);
+    }
+  }, [totalPages, currentPage]);
+
   return (
     <>
     <Navbar/>
@@ -170,7 +189,7 @@ export default function HRInterviewQuestionsComponent() {
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Top HR Interview Questions</h1>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          Review this list of {allQuestions.length} verified HR interview questions and answers from top companies across industries.
+          Review this list of {allHRQuestions.length} verified HR interview questions and answers from top companies across industries.
         </p>
       </div>
 
@@ -310,39 +329,7 @@ export default function HRInterviewQuestionsComponent() {
                 <div className="bg-gray-50 p-4 rounded-lg mb-4">
                   <h4 className="font-medium mb-2">Example Answer:</h4>
                   <p className="text-gray-700">
-                    {question.id === 1 ? (
-                      <>
-                        When answering "Tell me about yourself," focus on your professional journey that's relevant to the role. Start with your current position, highlight 2-3 key achievements, then briefly cover your background and qualifications. End with why you're interested in this role. Keep it under 2 minutes and practice to sound natural, not rehearsed.
-                      </>
-                    ) : question.id === 2 ? (
-                      <>
-                        When discussing strengths, select 3-4 qualities that are relevant to the job. For each strength, provide a brief example that demonstrates how you've used it successfully. Make sure your strengths align with what the employer is seeking. Be confident but not arrogant, and be prepared to discuss how you continue to develop these strengths.
-                      </>
-                    ) : question.id === 3 ? (
-                      <>
-                        The best approach to discussing weaknesses is to mention skills you've improved upon or are working to strengthen. Choose a genuine but not critical weakness, describe how you've recognized it, and explain the specific steps you're taking to overcome it. End with progress you've made. Avoid clichés like "I'm a perfectionist" and never mention weaknesses central to the job requirements.
-                      </>
-                    ) : question.id === 4 ? (
-                      <>
-                        For this challenging question, select a situation where you made a professional mistake that you learned from. Briefly describe what happened, take full responsibility without making excuses, and most importantly, focus on what you learned and how you've applied that lesson since. Choose something with a clear resolution and growth opportunity, and avoid sharing something that would raise serious concerns about your judgment.
-                      </>
-                    ) : question.id === 5 ? (
-                      <>
-                        When explaining why you're leaving your position, focus on the positive aspects of what you're moving toward rather than what you're leaving behind. Emphasize your desire for growth, new challenges, or better alignment with your career goals. Be honest but diplomatic - never speak negatively about your current employer. Demonstrate that you're making a thoughtful career move rather than an impulsive decision.
-                      </>
-                    ) : question.id === 6 ? (
-                      <>
-                        The "Silent Treatment" is a stress interview technique where the interviewer remains silent after you answer. Don't fill the silence with nervous chatter. Instead, maintain composure, briefly ask if they would like more detail on your answer, and then wait calmly. This tests your confidence and ability to handle pressure. Remember that it's a deliberate technique, not a sign you've answered poorly.
-                      </>
-                    ) : question.id === 7 ? (
-                      <>
-                        When answering "Why should I hire you?", focus on 3-4 specific qualifications and accomplishments that match what the employer needs. Research the company thoroughly beforehand to understand their challenges. Demonstrate your understanding of their needs, explain how your experience solves their problems, highlight your unique value proposition, and convey genuine enthusiasm for the role and company.
-                      </>
-                    ) : (
-                      <>
-                        This question tests your alignment with the role and organization. Prepare a thoughtful answer that demonstrates your understanding of the position's requirements and how your experience makes you well-suited to meet them. Focus on specific examples that highlight your relevant skills and accomplishments.
-                      </>
-                    )}
+                    {questionAnswers[question.id] || defaultAnswer}
                   </p>
                 </div>
                 
@@ -371,7 +358,7 @@ export default function HRInterviewQuestionsComponent() {
       {filteredQuestions.length > 0 && (
         <div className="mt-8">
           <p className="text-gray-500 mb-4">
-            Showing {(currentPage - 1) * questionsPerPage + 1} to {Math.min(currentPage * questionsPerPage, filteredQuestions.length)} of {filteredQuestions.length} questions
+            Showing {Math.min(filteredQuestions.length, 1 + (currentPage - 1) * questionsPerPage)} to {Math.min(currentPage * questionsPerPage, filteredQuestions.length)} of {filteredQuestions.length} questions
           </p>
           
           {/* Pagination controls */}
@@ -406,7 +393,7 @@ export default function HRInterviewQuestionsComponent() {
                 <Button 
                   variant="outline" 
                   size="sm"
-                  disabled={currentPage === totalPages}
+                  disabled={currentPage === totalPages || totalPages === 0}
                   onClick={() => handlePageChange(currentPage + 1)}
                 >
                   Next
